@@ -299,36 +299,56 @@ const EXERCISE={
 
 const MENUS={
   1:{desayuno:'Café con leche desc. + 2 huevos revueltos con queso untable + 1 rodaja pan integral',almuerzo:'150g pechuga pollo a la plancha + 150g arroz integral + ensalada zanahoria y tomate (200g)',merienda:'150g yogur desc. con frutillas (150g) + 15g almendras',cena:'150g merluza al horno + 200g ensalada lechuga, pepino y tomate'},
-  2:{desayuno:'Café con leche desc. + omelette de 2 huevos con queso fresco y tomate',almuerzo:'150g carne vacuna a la plancha + 200g ensalada remolacha y rúcula',merienda:'150g yogur desc. + 1 rodaja pan con pasta de maní (15g) + 1 manzana',cena:'150g pollo al horno + 150g papa al horno + 200g calabaza al horno'},
+  2:{desayuno:'Café con leche desc. + omelette de 2 huevos con queso fresco y tomate',almuerzo:'Ensalada de lentejas tibia: 150g lentejas cocidas + 100g espinaca + tomate cherry + cebolla morada + vinagreta de limón',merienda:'150g yogur desc. + 1 rodaja pan con pasta de maní (15g) + 1 manzana',cena:'150g pollo al horno + 150g papa al horno + 200g calabaza al horno'},
   3:{desayuno:'Café con leche desc. + tostada pan integral con queso untable + 2 huevos duros',almuerzo:'150g salmón a la plancha + 150g quinoa + ensalada de espinaca y tomate (200g)',merienda:'Yogur desc. con banana (150g) + 15g nueces',cena:'150g pechuga de pollo grillada + 200g brócoli y zanahoria al vapor'},
-  4:{desayuno:'Café con leche desc. + 2 huevos en tortilla de verduras + queso fresco',almuerzo:'150g lomo de cerdo a la plancha + 200g ensalada de repollo, zanahoria y manzana',merienda:'150g yogur desc. con pera (150g) + 15g almendras',cena:'150g atún natural a la plancha + 150g batata al horno + 200g ensalada mixta'},
+  4:{desayuno:'Café con leche desc. + 2 huevos en tortilla de verduras + queso fresco',almuerzo:'Curry suave de garbanzos: 150g garbanzos cocidos + 100g calabaza + espinaca + especias + 100g arroz integral',merienda:'150g yogur desc. con pera (150g) + 15g almendras',cena:'150g atún natural + 200g ensalada mixta con pepino y tomate'},
   5:{desayuno:'Café con leche desc. + 2 huevos revueltos + 1 rodaja pan integral con queso untable',almuerzo:'150g pollo al horno + 150g fideos integrales + 200g ensalada de tomate y albahaca',merienda:'200cc leche desc. + 15g pasta de maní + 1 naranja',cena:'150g merluza al horno + 200g ensalada de lechuga, pepino y zanahoria'},
-  6:{desayuno:'Café con leche desc. + omelette 2 huevos con verduras + queso fresco',almuerzo:'150g asado vacuno + 200g ensalada mixta con limón',merienda:'150g yogur desc. con frutillas + 15g nueces',cena:'150g pechuga pollo a la plancha + 200g berenjena y zapallitos grillados'},
+  6:{desayuno:'Café con leche desc. + omelette 2 huevos con verduras + queso fresco',almuerzo:'Bowl de garbanzos: 100g garbanzos + 100g pollo desmenuzado + rúcula + tomate + hummus casero (2 cdas)',merienda:'150g yogur desc. con frutillas + 15g nueces',cena:'Sopa de lentejas: 120g lentejas cocidas + zanahoria + cebolla + tomate + especias'},
   0:{desayuno:'Café con leche desc. + 2 huevos duros + pan integral con queso untable',almuerzo:'150g pollo al horno + 150g papa al horno + 200g ensalada de tomate y lechuga',merienda:'150g yogur desc. + 1 mandarina + 15g almendras',cena:'150g pescado al horno + 200g calabaza y zapallitos al horno'},
 };
 
 // ─── TRAINING DATA ───
 const TRAINING={
   1:{name:'Funcional / HIIT',icon:'🔥',lugar:'PrepNation — C/ de Luis Antúnez, 1, Gràcia',duracion:'50 min',horario:'7:00 o 18:00',reserva:true,formato:'Grupos de máx. 6 personas con coach',porque:'Arrancamos la semana con intensidad. El coach corrige técnica y se trabaja todo el cuerpo. Ideal para quemar grasa.',ejercicios:null},
-  2:{name:'Musculación (Tren Superior)',icon:'💪',lugar:'Basic-Fit Lesseps — C/ de Verdi, 200, Gràcia',duracion:'55 min',horario:'7:00 o 18:00',reserva:false,formato:'Rutina por tu cuenta',porque:null,ejercicios:[
-    {ej:'Calentamiento (elíptica o remo)',series:'5 min',nota:'Ritmo moderado'},
-    {ej:'Press de pecho con mancuernas',series:'3 x 12',nota:'Pecho + tríceps'},
-    {ej:'Remo con mancuerna',series:'3 x 12',nota:'Espalda + bíceps'},
-    {ej:'Press de hombros',series:'3 x 12',nota:'Hombros'},
-    {ej:'Curl de bíceps + Ext. tríceps',series:'3 x 12',nota:'Superserie'},
-    {ej:'Plancha frontal',series:'3 x 30 seg',nota:'Core'},
-    {ej:'Plancha lateral',series:'3 x 20 seg/lado',nota:'Oblicuos'},
-  ]},
+  2:{name:'Musculación (Tren Superior)',icon:'💪',lugar:'Viva Gym',duracion:'55 min',horario:'7:00 o 18:00',reserva:false,formato:'Rutina por tu cuenta',porque:null,modo:'dual',
+    mancuernas:[
+      {ej:'Calentamiento (elíptica o remo)',series:'5 min',nota:'Ritmo moderado'},
+      {ej:'Press de pecho con mancuernas',series:'3 x 12',nota:'Pecho + tríceps'},
+      {ej:'Remo con mancuerna',series:'3 x 12',nota:'Espalda + bíceps'},
+      {ej:'Press de hombros',series:'3 x 12',nota:'Hombros'},
+      {ej:'Curl de bíceps + Ext. tríceps',series:'3 x 12',nota:'Superserie'},
+      {ej:'Plancha frontal',series:'3 x 30 seg',nota:'Core'},
+      {ej:'Plancha lateral',series:'3 x 20 seg/lado',nota:'Oblicuos'},
+    ],
+    maquinas:[
+      {ej:'Calentamiento (elíptica o remo)',series:'5 min',nota:'Ritmo moderado'},
+      {ej:'Press de pecho en máquina',series:'3 x 12',nota:'Pecho + tríceps'},
+      {ej:'Polea alta (jalón al pecho)',series:'3 x 12',nota:'Dorsal + bíceps'},
+      {ej:'Polea baja (remo sentado)',series:'3 x 12',nota:'Espalda media + romboides'},
+      {ej:'Press de hombros en máquina',series:'3 x 12',nota:'Deltoides'},
+      {ej:'Polea para tríceps (cuerda)',series:'3 x 12',nota:'Tríceps'},
+      {ej:'Plancha lateral',series:'3 x 20 seg/lado',nota:'Core + oblicuos'},
+    ]},
   3:{name:'Pilates Reformer',icon:'🧘‍♀️',lugar:'PILAT3S Gràcia — C/ del Perill, 40, Gràcia',duracion:'50 min',horario:'7:00 o 19:00',reserva:true,formato:'Clase "Tone" (intermedio) o "Align" (principiante)',porque:'Core profundo, mejora postura, tonifica sin impacto. Recuperación activa después de 2 días intensos.',nota:'Llevar calcetines antideslizantes',ejercicios:null},
-  4:{name:'Musculación (Tren Inferior + Core)',icon:'🦵',lugar:'Basic-Fit Lesseps — C/ de Verdi, 200, Gràcia',duracion:'55 min',horario:'7:00 o 18:00',reserva:false,formato:'Rutina por tu cuenta',porque:null,ejercicios:[
-    {ej:'Calentamiento (bicicleta)',series:'5 min',nota:'Ritmo moderado'},
-    {ej:'Sentadilla goblet con mancuerna',series:'3 x 12',nota:'Cuádriceps + glúteos'},
-    {ej:'Peso muerto rumano con mancuernas',series:'3 x 12',nota:'Isquiotibiales + glúteos'},
-    {ej:'Zancadas caminando',series:'3 x 10/pierna',nota:'Cuádriceps + equilibrio'},
-    {ej:'Hip thrust en banco',series:'3 x 15',nota:'Glúteos'},
-    {ej:'Elevación de gemelos',series:'3 x 15',nota:'Pantorrillas'},
-    {ej:'Crunch + bicicleta',series:'3 x 15',nota:'Abdominales'},
-  ]},
+  4:{name:'Musculación (Tren Inferior + Core)',icon:'🦵',lugar:'Viva Gym',duracion:'55 min',horario:'7:00 o 18:00',reserva:false,formato:'Rutina por tu cuenta',porque:null,modo:'dual',
+    mancuernas:[
+      {ej:'Calentamiento (bicicleta)',series:'5 min',nota:'Ritmo moderado'},
+      {ej:'Sentadilla goblet con mancuerna',series:'3 x 12',nota:'Cuádriceps + glúteos'},
+      {ej:'Peso muerto rumano con mancuernas',series:'3 x 12',nota:'Isquiotibiales + glúteos'},
+      {ej:'Zancadas caminando',series:'3 x 10/pierna',nota:'Cuádriceps + equilibrio'},
+      {ej:'Hip thrust en banco',series:'3 x 15',nota:'Glúteos'},
+      {ej:'Elevación de gemelos',series:'3 x 15',nota:'Pantorrillas'},
+      {ej:'Crunch + bicicleta',series:'3 x 15',nota:'Abdominales'},
+    ],
+    maquinas:[
+      {ej:'Calentamiento (bicicleta)',series:'5 min',nota:'Ritmo moderado'},
+      {ej:'Prensa de piernas',series:'3 x 12',nota:'Cuádriceps + glúteos'},
+      {ej:'Curl femoral en máquina',series:'3 x 12',nota:'Isquiotibiales'},
+      {ej:'Extensión de cuádriceps',series:'3 x 12',nota:'Cuádriceps'},
+      {ej:'Aductora / Abductora',series:'3 x 15',nota:'Aductores + glúteo medio'},
+      {ej:'Elevación de gemelos en máquina',series:'3 x 15',nota:'Pantorrillas'},
+      {ej:'Crunch + bicicleta',series:'3 x 15',nota:'Abdominales'},
+    ]},
   5:{name:'Yoga (Vinyasa/Hatha)',icon:'🧘',lugar:'Yogaiam — C/ de Massens, 73, Gràcia',duracion:'60 min',horario:'18:00 - 20:00',reserva:true,formato:'Vinyasa Flow o Hatha Yoga',porque:'Cerramos la semana con flexibilidad, movilidad y relajación. Ayuda a recuperar los músculos y reduce el estrés.',ejercicios:null},
   6:{name:'Descanso activo',icon:'🚶‍♀️',lugar:'Aire libre — Gràcia o Parc Güell',duracion:'30-45 min',horario:'Mañana',reserva:false,formato:'Caminata + estiramientos suaves',porque:'Movimiento suave para mantener la circulación sin sobrecargar.',ejercicios:null},
   0:{name:'Descanso total',icon:'😴',lugar:'Casa',duracion:'—',horario:'—',reserva:false,formato:'Recuperación. Foam roller o estiramientos si hay ganas.',porque:null,ejercicios:null},
@@ -339,7 +359,7 @@ var EJ_DETAILS={
   // Day 2 — Upper body
   'Calentamiento (elíptica o remo)':{
     maquina:'Elíptica o máquina de remo',
-    zona:'Zona cardio (planta baja en Basic-Fit Lesseps)',
+    zona:'Zona cardio (planta baja en Viva Gym)',
     musculos:['Todo el cuerpo','Activación cardiovascular'],
     pasos:['Elegí elíptica o remo — ambas calientan bien el tren superior','Mantené un ritmo moderado (que puedas hablar)','En la elíptica: empujá los brazos activamente, no solo las piernas','En el remo: tirá con la espalda, no solo con los brazos','5 minutos es suficiente para entrar en calor'],
     tips:'No te saltees el calentamiento. Reduce el riesgo de lesiones y mejora el rendimiento.',
@@ -450,6 +470,77 @@ var EJ_DETAILS={
     tips:'No tires del cuello con las manos. Las manos solo acompañan la cabeza, la fuerza sale del abdomen.',
     img:'ejercicios-img/Crunch-y-bicicleta.png',panels:4
   },
+  // ─── MÁQUINAS ───
+  'Prensa de piernas':{
+    maquina:'Prensa de piernas (leg press)',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Cuádriceps','Glúteos','Isquiotibiales'],
+    pasos:['Sentate en la prensa con la espalda pegada al respaldo','Pies al ancho de hombros en la plataforma, a la mitad','Destrabá el seguro y bajá la plataforma flexionando rodillas','Bajá hasta que las rodillas formen 90°','Empujá con los talones para subir sin trabar las rodillas','12 repeticiones controladas'],
+    tips:'No apoyes las manos en las rodillas. Empezá con poco peso para aprender el recorrido.'
+  },
+  'Curl femoral en máquina':{
+    maquina:'Curl femoral acostado o sentado',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Isquiotibiales','Gemelos'],
+    pasos:['Ajustá el rodillo para que quede justo arriba de los talones','Acostate boca abajo (o sentate según la máquina)','Flexioná las rodillas llevando los talones hacia los glúteos','Apretá 1 segundo arriba','Bajá controlado sin soltar de golpe','12 repeticiones'],
+    tips:'Movimiento lento y controlado. Si se te levanta la cadera, bajá el peso.'
+  },
+  'Extensión de cuádriceps':{
+    maquina:'Extensión de cuádriceps (leg extension)',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Cuádriceps (recto femoral, vasto)'],
+    pasos:['Sentate con la espalda pegada al respaldo','Ajustá el rodillo para que quede en la parte baja de las espinillas','Extendé las piernas hasta estirar casi por completo','Apretá 1 segundo arriba','Bajá controlado','12 repeticiones'],
+    tips:'No dejes caer el peso. La fase de bajada trabaja tanto como la subida.'
+  },
+  'Aductora / Abductora':{
+    maquina:'Máquina aductora y abductora',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Aductores','Glúteo medio','Glúteo menor'],
+    pasos:['Sentate con la espalda recta y pies en los apoyos','ADUCTORA: cerrá las piernas juntando las rodillas','ABDUCTORA: abrí las piernas empujando hacia afuera','Controlá el movimiento en ambas direcciones','15 repeticiones en cada máquina','Podés hacer primero una y después la otra'],
+    tips:'No uses impulso. El movimiento tiene que ser controlado y sentir la tensión en los músculos internos/externos del muslo.'
+  },
+  'Elevación de gemelos en máquina':{
+    maquina:'Máquina de gemelos (sentado o de pie)',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Gemelos (gastrocnemio)','Sóleo'],
+    pasos:['Sentate en la máquina con las almohadillas sobre las rodillas','Pies en el borde de la plataforma, talones al aire','Subí en puntas de pie lo más alto que puedas','Apretá 1 segundo arriba','Bajá controlado estirando bien el gemelo','15 repeticiones completas'],
+    tips:'El rango completo es clave: bajá hasta sentir el estiramiento y subí hasta la contracción máxima.'
+  },
+  'Press de pecho en máquina':{
+    maquina:'Press de pecho (chest press)',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Pectoral mayor','Tríceps','Deltoides anterior'],
+    pasos:['Ajustá el asiento para que las manijas queden a la altura del pecho','Sentate con la espalda pegada al respaldo','Agarrá las manijas y empujá hacia adelante estirando los brazos','No trabe los codos al final del recorrido','Volvé controlado hasta sentir estiramiento en el pecho','12 repeticiones'],
+    tips:'Más segura que el press con mancuernas. Ideal para ir subiendo peso con confianza.'
+  },
+  'Polea alta (jalón al pecho)':{
+    maquina:'Polea alta con barra ancha (lat pulldown)',
+    zona:'Zona de poleas — Viva Gym',
+    musculos:['Dorsal ancho','Bíceps','Trapecio','Romboides'],
+    pasos:['Sentate y ajustá la almohadilla sobre los muslos para fijarte','Agarrá la barra ancha con agarre un poco más que el ancho de hombros','Tirá la barra hacia el pecho sacando pecho y apretando omóplatos','Bajá controlado hasta que los brazos se estiren arriba','No te inclines demasiado hacia atrás','12 repeticiones'],
+    tips:'Pensá en "llevar los codos hacia abajo y atrás", no en tirar con las manos.'
+  },
+  'Polea baja (remo sentado)':{
+    maquina:'Polea baja con manija en V o triángulo',
+    zona:'Zona de poleas — Viva Gym',
+    musculos:['Dorsal ancho','Romboides','Trapecio medio','Bíceps'],
+    pasos:['Sentate con los pies en los apoyos, rodillas ligeramente flexionadas','Agarrá la manija con ambas manos','Tirá hacia el abdomen apretando los omóplatos','Mantené el pecho abierto y la espalda recta','Volvé controlado estirando los brazos','12 repeticiones'],
+    tips:'No balancees el torso. El movimiento sale de la espalda, no de la inercia del cuerpo.'
+  },
+  'Press de hombros en máquina':{
+    maquina:'Press de hombros (shoulder press machine)',
+    zona:'Zona de máquinas — Viva Gym',
+    musculos:['Deltoides medio y anterior','Tríceps','Trapecio superior'],
+    pasos:['Ajustá el asiento para que las manijas queden a la altura de los hombros','Sentate con la espalda pegada al respaldo','Empujá las manijas hacia arriba sin trabar los codos','Bajá controlado hasta la posición inicial','Mantené el core apretado durante todo el movimiento','12 repeticiones'],
+    tips:'Más estable que el press con mancuernas. Buena para enfocarte en la fuerza sin preocuparte por el equilibrio.'
+  },
+  'Polea para tríceps (cuerda)':{
+    maquina:'Polea alta con cuerda (rope pushdown)',
+    zona:'Zona de poleas — Viva Gym',
+    musculos:['Tríceps (las 3 cabezas)'],
+    pasos:['De pie frente a la polea alta, agarrá la cuerda con ambas manos','Codos pegados al cuerpo, antebrazos a 90°','Empujá hacia abajo estirando los brazos','Al final, abrí un poco las manos hacia los costados','Subí controlado sin mover los codos','12 repeticiones'],
+    tips:'Los codos no se mueven — solo los antebrazos. Si se te mueven los codos, bajá el peso.'
+  },
 };
 
 const SHOPPING_DEFAULT=[
@@ -457,7 +548,7 @@ const SHOPPING_DEFAULT=[
   {section:'🥩 Carnicería',items:[{name:'Pechuga de pollo',qty:'3 kg'},{name:'Carne vacuna (nalga/lomo)',qty:'1.5 kg'},{name:'Lomo de cerdo',qty:'600g'},{name:'Merluza/abadejo',qty:'1.2 kg'},{name:'Salmón',qty:'600g'},{name:'Atún natural (lata)',qty:'4 latas'},{name:'Huevos',qty:'5 docenas'}]},
   {section:'🥬 Frutas y Verduras',items:[{name:'Tomate',qty:'3 kg'},{name:'Lechuga/rúcula',qty:'6 uds'},{name:'Zanahoria',qty:'2 kg'},{name:'Brócoli/coliflor',qty:'1.5 kg'},{name:'Calabaza',qty:'2 kg'},{name:'Zapallitos',qty:'1 kg'},{name:'Berenjena',qty:'1 kg'},{name:'Pepino',qty:'1 kg'},{name:'Espinaca',qty:'500g'},{name:'Cebolla',qty:'1 kg'},{name:'Remolacha',qty:'500g'},{name:'Papa/batata',qty:'2 kg'},{name:'Frutillas',qty:'1 kg'},{name:'Manzana',qty:'2 kg'},{name:'Banana',qty:'1.5 kg'},{name:'Naranja/mandarina',qty:'2 kg'},{name:'Pera',qty:'1 kg'},{name:'Limón',qty:'6 uds'}]},
   {section:'🍞 Panadería',items:[{name:'Pan lactal integral',qty:'4 paquetes'}]},
-  {section:'🌾 Cereales y Legumbres',items:[{name:'Arroz integral',qty:'500g'},{name:'Quinoa',qty:'500g'},{name:'Fideos integrales',qty:'500g'},{name:'Avena',qty:'250g'}]},
+  {section:'🌾 Cereales y Legumbres',items:[{name:'Arroz integral',qty:'500g'},{name:'Quinoa',qty:'500g'},{name:'Fideos integrales',qty:'500g'},{name:'Avena',qty:'250g'},{name:'Garbanzos (cocidos o secos)',qty:'2 botes/500g'},{name:'Lentejas (cocidas o secas)',qty:'2 botes/500g'}]},
   {section:'🫒 Aceites y Condimentos',items:[{name:'Aceite de oliva extra virgen',qty:'1 botella (500ml)'},{name:'Vinagre/aceto balsámico',qty:'1 botella'},{name:'Stevia/sucralosa',qty:'1 paquete'}]},
   {section:'🥜 Frutos Secos',items:[{name:'Almendras',qty:'300g'},{name:'Nueces',qty:'200g'},{name:'Pasta de maní',qty:'1 frasco'}]},
 ];
@@ -994,15 +1085,26 @@ function renderEntrenamiento(){
     t.nota?h('div',{style:{fontSize:'11px',color:'var(--clay)',marginTop:'8px',fontWeight:'600'}},'🧦 '+t.nota):null
   );
   page.appendChild(detailCard);
-  // Exercise table if available
-  if(t.ejercicios){
+  // Exercise table — with toggle for dual mode days
+  var ejerciciosList=t.ejercicios;
+  if(t.modo==='dual'){
+    if(!state.trainMode)state.trainMode='mancuernas';
+    ejerciciosList=t[state.trainMode];
+    // Toggle Mancuernas / Máquinas
+    var toggleStyle=function(active){return{flex:'1',padding:'8px 0',border:'none',borderRadius:'var(--radius-full)',fontSize:'13px',fontWeight:'600',cursor:'pointer',fontFamily:'var(--font-body)',background:active?'var(--neutral-800)':'transparent',color:active?'white':'var(--neutral-500)',transition:'all 0.2s var(--ease-out)'}};
+    page.appendChild(h('div',{style:{display:'flex',gap:'4px',padding:'4px',borderRadius:'var(--radius-full)',background:'var(--neutral-100)',marginBottom:'12px'}},
+      h('button',{style:toggleStyle(state.trainMode==='mancuernas'),onClick:function(){state.trainMode='mancuernas';render()}},'🏋️ Mancuernas'),
+      h('button',{style:toggleStyle(state.trainMode==='maquinas'),onClick:function(){state.trainMode='maquinas';render()}},'⚙️ Máquinas')
+    ));
+  }
+  if(ejerciciosList){
     var tableCard=h('div',{className:'card'},
       h('div',{className:'card-title'},'Rutina del día'),
       h('div',{style:{fontSize:'11px',color:'var(--neutral-400)',marginBottom:'8px'}},'Tocá un ejercicio para ver el detalle')
     );
-    t.ejercicios.forEach(function(ej,i){
+    ejerciciosList.forEach(function(ej,i){
       var hasDetail=!!EJ_DETAILS[ej.ej];
-      tableCard.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'10px',padding:'10px 0',borderBottom:i<t.ejercicios.length-1?'1px solid var(--neutral-100)':'none',cursor:hasDetail?'pointer':'default'},onClick:hasDetail?function(){state.page='ejercicio_detalle';state.currentExercise=ej.ej;render()}:null},
+      tableCard.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'10px',padding:'10px 0',borderBottom:i<ejerciciosList.length-1?'1px solid var(--neutral-100)':'none',cursor:hasDetail?'pointer':'default'},onClick:hasDetail?function(){state.page='ejercicio_detalle';state.currentExercise=ej.ej;render()}:null},
         h('div',{style:{width:'26px',height:'26px',borderRadius:'var(--radius-sm)',background:'var(--neutral-100)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:'700',color:'var(--neutral-500)',flexShrink:'0'}},String(i+1)),
         h('div',{style:{flex:'1',minWidth:'0'}},
           h('div',{style:{fontWeight:'600',color:'var(--neutral-800)'}},ej.ej),
