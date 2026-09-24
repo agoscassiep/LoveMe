@@ -1032,24 +1032,43 @@ function renderPeso(){
         h('span',{style:{fontWeight:'600',padding:'3px 12px',borderRadius:'9999px',background:down?'var(--sage-light)':'#F5D5CE',color:down?'var(--sage-dark)':'var(--error)'}},`${down?'↓':'↑'} ${diff} kg desde el inicio`)
       ));
     }
-    // SVG chart
-    const W=300,H=160,PAD=35,vals=state.weights.map(w=>w.weight);
+    // Range filter (1M / 3M / 6M / Todo)
+    if(!state.pesoRange)state.pesoRange='3m';
+    const RANGE_DAYS={'1m':31,'3m':92,'6m':183,'all':999999};
+    const todayT=new Date(todayStr()+'T00:00:00').getTime();
+    let wv=state.pesoRange==='all'?state.weights.slice():state.weights.filter(function(w){return (todayT-new Date(w.date+'T00:00:00').getTime())/86400000<=RANGE_DAYS[state.pesoRange]});
+    if(wv.length<2)wv=state.weights.slice(-Math.min(state.weights.length,8)); // fallback so chart never looks empty
+    const rangeRow=h('div',{style:{display:'flex',gap:'6px',marginBottom:'12px'}});
+    [['1m','1M'],['3m','3M'],['6m','6M'],['all','Todo']].forEach(function(r){
+      var active=state.pesoRange===r[0];
+      rangeRow.appendChild(h('button',{style:{flex:'1',padding:'7px 0',border:'none',borderRadius:'var(--radius-full)',fontSize:'12px',fontWeight:'600',fontFamily:'var(--font-body)',cursor:'pointer',background:active?'var(--neutral-800)':'var(--neutral-100)',color:active?'white':'var(--neutral-500)',transition:'all 0.2s var(--ease-out)'},onClick:function(){state.pesoRange=r[0];render()}},r[1]));
+    });
+    chartCard.appendChild(rangeRow);
+    // SVG chart (uses filtered wv)
+    const W=300,H=160,PAD=35,vals=wv.map(w=>w.weight);
     const minW=Math.min(...vals)-1,maxW=Math.max(...vals)+1,range=maxW-minW||1;
-    const points=state.weights.map((w,i)=>({x:PAD+(state.weights.length===1?(W-2*PAD)/2:i*(W-2*PAD)/(state.weights.length-1)),y:PAD+(1-(w.weight-minW)/range)*(H-2*PAD)}));
+    const points=wv.map((w,i)=>({x:PAD+(wv.length===1?(W-2*PAD)/2:i*(W-2*PAD)/(wv.length-1)),y:PAD+(1-(w.weight-minW)/range)*(H-2*PAD)}));
     const pathD=points.map((p,i)=>`${i===0?'M':'L'}${p.x},${p.y}`).join(' ');
-    let trendD='';
-    if(state.weights.length>=2){const n=state.weights.length,xs=vals.map((_,i)=>i),ys=vals,mx=xs.reduce((a,b)=>a+b,0)/n,my=ys.reduce((a,b)=>a+b,0)/n,num=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0),den=xs.reduce((s,x)=>s+(x-mx)**2,0),slope=den?num/den:0,intercept=my-slope*mx,ty1=intercept,ty2=intercept+slope*(n-1);trendD=`M${PAD},${PAD+(1-(ty1-minW)/range)*(H-2*PAD)} L${PAD+(W-2*PAD)},${PAD+(1-(ty2-minW)/range)*(H-2*PAD)}`}
+    // Smart labels: only first, last, min and max points get value + date labels
+    let minIdx=0,maxIdx=0;
+    wv.forEach(function(w,i){if(w.weight<wv[minIdx].weight)minIdx=i;if(w.weight>wv[maxIdx].weight)maxIdx=i});
+    const labelIdx=new Set([0,wv.length-1,minIdx,maxIdx]);
     const goalY=PAD+(1-(52-minW)/range)*(H-2*PAD),showGoal=52>=minW&&52<=maxW;
     let svg='<defs><linearGradient id="gG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A8C5A0"/><stop offset="100%" stop-color="#FAF8F5"/></linearGradient></defs>';
     const step=range>4?2:1;
     for(let v=Math.ceil(minW);v<=Math.floor(maxW);v+=step){const yy=PAD+(1-(v-minW)/range)*(H-2*PAD);svg+=`<line x1="${PAD}" y1="${yy}" x2="${W-10}" y2="${yy}" stroke="var(--neutral-200)" stroke-width="0.5"/><text x="${PAD-4}" y="${yy+3}" fill="var(--neutral-400)" font-size="8" font-family="DM Sans,sans-serif" text-anchor="end">${v}</text>`}
     if(showGoal)svg+=`<line x1="${PAD}" y1="${goalY}" x2="${W-10}" y2="${goalY}" stroke="var(--sage)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/><text x="${W-8}" y="${goalY-4}" fill="var(--sage-dark)" font-size="7" font-family="DM Sans,sans-serif" text-anchor="end" font-weight="600">Meta 52</text>`;
-    if(trendD)svg+=`<path d="${trendD}" fill="none" stroke="var(--peach-dark)" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>`;
     if(points.length>1)svg+=`<path d="${pathD} L${points[points.length-1].x},${H-PAD} L${points[0].x},${H-PAD} Z" fill="url(#gG)" opacity="0.3"/>`;
     svg+=`<path d="${pathD}" fill="none" stroke="var(--sage-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
-    points.forEach((p,i)=>{svg+=`<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="white" stroke="var(--sage-dark)" stroke-width="2.5"/><text x="${p.x}" y="${p.y-9}" fill="var(--neutral-700)" font-size="8" font-family="var(--font-display)" text-anchor="middle">${vals[i]}</text>`});
-    state.weights.forEach((w,i)=>{svg+=`<text x="${points[i].x}" y="${H-8}" fill="var(--neutral-400)" font-size="7" font-family="DM Sans,sans-serif" text-anchor="middle">${fmtDate(w.date)}</text>`});
+    points.forEach((p,i)=>{
+      var keyPt=labelIdx.has(i);
+      svg+=`<circle cx="${p.x}" cy="${p.y}" r="${keyPt?4.5:3}" fill="white" stroke="var(--sage-dark)" stroke-width="${keyPt?2.5:2}"/>`;
+      if(keyPt)svg+=`<text x="${p.x}" y="${p.y-9}" fill="var(--neutral-700)" font-size="9" font-family="var(--font-display)" text-anchor="middle">${vals[i]}</text>`;
+    });
+    // X-axis: only date labels for first and last point in view
+    [0,wv.length-1].forEach(function(i){if(i>=0&&points[i]){var anch=i===0?'start':'end';svg+=`<text x="${points[i].x}" y="${H-8}" fill="var(--neutral-400)" font-size="8" font-family="DM Sans,sans-serif" text-anchor="${anch}">${fmtDate(wv[i].date)}</text>`}});
     chartCard.appendChild(h('div',{className:'chart-container',innerHTML:`<svg viewBox="0 0 ${W} ${H}" style="width:100%;min-width:280px">${svg}</svg>`}));
+    chartCard.appendChild(h('div',{style:{fontSize:'10px',color:'var(--neutral-400)',textAlign:'center',marginTop:'6px',fontWeight:'500'}},'Etiquetas: inicio · actual · mínimo · máximo del período'));
     page.appendChild(chartCard);
 
     const histCard=h('div',{className:'card'},h('div',{className:'card-title'},h('div',{className:'card-icon-box'},'📝'),' Historial'));
